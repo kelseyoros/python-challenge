@@ -7,6 +7,8 @@ budget_data = os.path.join('..','Python-Challenge','Resources', 'budget_data.csv
 #initialize the variables
 count = 0
 total = 0
+greatest_increase = ["", 0]
+greatest_decrease = ["", 9999999999999999999]
 
 #create list to store the changes (differences) in profits/losses
 changelist = []
@@ -32,6 +34,13 @@ with open(budget_data) as csvfile:
         changelist += [netchange]
         previousnet = int(row[1])
 
+        if netchange > greatest_increase[1]:
+            greatest_increase[0]=row[0]
+            greatest_increase[1] = netchange
+        
+        if netchange < greatest_decrease[1]:
+            greatest_decrease[0]=row[0]
+            greatest_decrease[1] = netchange
 
 sumofchanges = sum(changelist)/len(changelist)
 
@@ -40,18 +49,22 @@ print('-----------------------------')
 print(f'Total Months: {count}')
 print(f'Total: ${total}')
 print(f'Average Change: ${round(sumofchanges, 2)}')
-print(f'Greatest Increase in Profits: ${max(changelist)}')
-print(f'Greatest Decrease in Profits: ${min(changelist)}')
+print(f'Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})')
+print(f'Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})')
 
 
-# #set the variable for the output file
-# output_file = os.path.join('..','Python-Challenge','Resources', 'budget_data_final.csv')
+write_to_file = (
+'Financial Analysis\n'
+'-----------------------------\n'
+f'Total Months: {count}\n'
+f'Total: ${total}\n'
+f'Average Change: ${round(sumofchanges, 2)}\n'
+f'Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n'
+f'Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n')
 
-# with open(output_file,"w") as datafile:
-#     writer = csv.writer(datafile)
 
-#     # Write the header row
-#     writer.writerow(["Financial Analysis"])
+#set the variable for the output file
+output_file = os.path.join('Resources', 'budget_data_final.txt')
 
-#     # Write in zipped rows
-#     writer.writerows()
+with open(output_file,"w") as datafile:
+    datafile.write(write_to_file)

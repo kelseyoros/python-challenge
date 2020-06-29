@@ -1,5 +1,5 @@
 # python-challenge
-
+## 
 ## PyBank
 
 In this challenge, I created a Python script for analyzing the financial records of a company. I was given a set of financial data composed of two columns: `Date` and `Profit/Losses`.
@@ -27,8 +27,8 @@ The final script prints the analysis to the terminal and exports a text file wit
   Greatest Increase in Profits: Feb-2012 ($1926159)
   Greatest Decrease in Profits: Sep-2013 ($-2196167)
   ```
-
-##PyPoll
+## 
+## PyPoll
 In this challenge, I was tasked with helping a small, rural town modernize its vote-counting process. I was given a csv file of poll data that had three columns: `Voter ID`, `County`, and `Candidate`.
 
 The Python script calculates the following:
